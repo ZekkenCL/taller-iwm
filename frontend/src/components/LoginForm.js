@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import login_imagen from '../assets/images/logo.png';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
@@ -25,31 +26,40 @@ function LoginForm() {
     };
 
     return (
-        <div className="container">
-        <form onSubmit={handleSubmit} className="mt-4">
-            <div className="mb-3">
-                <label htmlFor="username" className="form-label">Usuario:</label>
+    <div className="container-md align-items-center justify-content-center">
+        <main className="form-signin w-100 m-auto">
+        <form onSubmit={handleSubmit}>
+            <img className="mb-4" src={login_imagen} alt="" width="72" height="57" />
+            <h1 className="h3 mb-3 fw-normal">Iniciar Sesion</h1>
+
+            <div className="form-floating">
                 <input
                     type="text"
                     className="form-control"
-                    id="username"
+                    id="floatingInput"
+                    placeholder="name@example.com"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
+                <label htmlFor="floatingInput">Username</label>
             </div>
-            <div className="mb-3">
-                <label htmlFor="password" className="form-label">Contraseña:</label>
+            <div className="form-floating">
                 <input
                     type="password"
                     className="form-control"
-                    id="password"
+                    id="floatingPassword"
+                    placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <label htmlFor="floatingPassword">Password</label>
             </div>
+
             {error && <div className="alert alert-danger">{error}</div>}
-            <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
+
+            <button className="btn btn-lg btn-primary w-100 py-2" type="submit">Sign in</button>
         </form>
+    </main>
     </div>
     );
 }
