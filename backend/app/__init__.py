@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 # Inicializa las extensiones
 db = SQLAlchemy()
@@ -18,6 +19,8 @@ def create_app():
     # Inicializa las extensiones con el objeto de la app
     db.init_app(app)
     migrate.init_app(app, db)
+
+    CORS(app)
 
     # Importa y registra el Blueprint
     from app.routes import routes
