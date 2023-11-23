@@ -10,3 +10,27 @@ export const obtenerClientes = () => {
         }
     });
 };
+
+export const actualizarCliente = (cliente) => {
+    return axios.put(`${API_URL}cliente/${cliente.id}`, cliente, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+};
+
+export const eliminarCliente = (idCliente) => {
+    return axios.delete(`${API_URL}cliente/${idCliente}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+};
+
+export const crearCliente = (datosCliente) => {
+    return axios.post('http://localhost:5000/cliente', datosCliente, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+};

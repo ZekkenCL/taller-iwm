@@ -13,10 +13,14 @@ def get_clientes():
     clientes = Cliente.query.all()
     return jsonify([cliente.to_dict() for cliente in clientes])
 
-@routes.route('/cliente/<int:id>', methods=['GET'])
-def get_cliente(id):
-    cliente = Cliente.query.get_or_404(id)
-    return jsonify(cliente.to_dict())
+@routes.route('/clientes/buscar', methods=['GET'])
+def buscar_clientes():
+    termino_busqueda = request.args.get('busqueda', type=str)
+    # Asumiendo que 'dni' es el RUT y 'email' es el correo electrónico
+    clientes = Cliente.query.filter(
+        (Cliente.dni == termino_busqueda) | (Cliente.email == termino_busqueda)
+    ).all()
+    return jsonify([cliente.to_dict() for cliente in clientes])
 
 @routes.route('/cliente', methods=['POST'])
 def add_cliente():
