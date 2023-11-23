@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  obtenerClientes,
-  actualizarCliente,
-  eliminarCliente,
-  crearCliente,
-} from "../services/clienteService";
+import { obtenerClientes, actualizarCliente, eliminarCliente, crearCliente, } from "../services/clienteService";
 import ModalEdicionCliente from "./ModalEdicionCliente";
-import ModalCrearUsuario from "./ModalCrearUsuario"; // Asegúrate de importar el componente
+import ModalCrearUsuario from "./ModalCrearUsuario";
 import Swal from "sweetalert2";
+import Navbar from "./Navbar";
 
 function Dashboard() {
   const [clientes, setClientes] = useState([]);
@@ -58,27 +54,41 @@ function Dashboard() {
   };
 
   const agregarUsuario = async (nuevoUsuario) => {
-    try {
-        await crearCliente(nuevoUsuario);
-        cargarClientes();
-        setMostrarModalCrear(false); // Cerrar el modal
+    // Verificar si ya existe un cliente con el mismo RUT/DNI
+    const clienteExistente = clientes.some(cliente => cliente.dni === nuevoUsuario.dni);
 
-        // Mostrar mensaje de éxito
+    if (clienteExistente) {
+        // Cliente ya existe, mostrar mensaje de advertencia
         Swal.fire({
-            title: '¡Éxito!',
-            text: 'Cliente agregado con éxito',
-            icon: 'success',
-            confirmButtonText: 'OK'
+            title: 'Cliente ya registrado',
+            text: 'Ya existe un cliente con el mismo RUT/DNI',
+            icon: 'warning',
+            confirmButtonText: 'Entendido'
         });
-    } catch (error) {
-        console.error("Error al agregar el cliente:", error);
-        // Mostrar mensaje de error
-        Swal.fire({
-            title: 'Error',
-            text: 'No se pudo agregar el cliente',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
+    } else {
+        // Cliente no existe, proceder con la adición del nuevo cliente
+        try {
+            await crearCliente(nuevoUsuario);
+            cargarClientes(); // Recargar la lista de clientes
+            setMostrarModalCrear(false); // Cerrar el modal
+
+            // Mostrar mensaje de éxito
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'Cliente agregado con éxito',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        } catch (error) {
+            console.error("Error al agregar el cliente:", error);
+            // Mostrar mensaje de error
+            Swal.fire({
+                title: 'Error',
+                text: 'No se pudo agregar el cliente',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
     }
 };
 
@@ -131,6 +141,8 @@ const confirmarEliminacion = async (idCliente) => {
 };
 
   return (
+    <div>
+      <Navbar />
     <div className="container mt-4">
       <h2 className="mb-3 text-center">Lista de Clientes</h2>
 
@@ -207,6 +219,7 @@ const confirmarEliminacion = async (idCliente) => {
           cerrarModal={() => setClienteAEditar(null)}
         />
       )}
+    </div>
     </div>
   );
 }

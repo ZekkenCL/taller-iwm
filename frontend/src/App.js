@@ -17,7 +17,6 @@ function App() {
                             <PrivateRoute element={<Dashboard />} />
                         } 
                     />
-                    {/* Puedes añadir más rutas según sea necesario */}
                 </Routes>
             </Router>
         </AuthProvider>

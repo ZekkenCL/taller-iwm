@@ -6,24 +6,35 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
   const [dni, setDni] = useState("");
   const [email, setEmail] = useState("");
   const [points, setPuntos] = useState(0);
-  const [error, setError] = useState("");
+  const [errores, setErrores] = useState({});
 
   const validarEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
     return regex.test(email);
   };
 
+  const esTextoValido = (texto) => {
+    return isNaN(texto) && texto.trim() !== '';
+  };
+
+  const validarDni = (dni) => {
+    const regex = /^\d{8}$/; // Ajusta esta expresión regular según tu formato
+    return regex.test(dni);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validarEmail(email)) {
-      setError("El correo electrónico no es válido");
-      return;
-    }
-    if (!name || !lastname || !dni) {
-      setError("Todos los campos son obligatorios");
-      return;
-    }
-    setError("");
+    
+    let erroresTemp = {};
+    if (!validarEmail(email)) erroresTemp.email = "El correo electrónico no es válido";
+    if (!esTextoValido(name)) erroresTemp.name = "El nombre no es válido";
+    if (!esTextoValido(lastname)) erroresTemp.lastname = "El apellido no es válido";
+    if (!validarDni(dni)) erroresTemp.dni = "El DNI/RUT no es válido";
+    if (points < 0) erroresTemp.points = "Los puntos no pueden ser negativos";
+
+    setErrores(erroresTemp);
+    if (Object.keys(erroresTemp).length > 0) return;
+
     crearUsuario({ name, lastname, dni, email, points });
     cerrarModal();
   };
@@ -46,12 +57,12 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
             ></button>
           </div>
           <div className="modal-body">
-            {error && <div className="alert alert-danger">{error}</div>}
+            {Object.keys(errores).map(key => (
+              <div key={key} className="alert alert-danger">{errores[key]}</div>
+            ))}
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="nombre" className="form-label">
-                  Nombre
-                </label>
+                <label htmlFor="nombre" className="form-label">Nombre</label>
                 <input
                   type="text"
                   className="form-control"
@@ -62,9 +73,7 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="apellido" className="form-label">
-                  Apellido
-                </label>
+                <label htmlFor="apellido" className="form-label">Apellido</label>
                 <input
                   type="text"
                   className="form-control"
@@ -75,9 +84,7 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="dni" className="form-label">
-                  DNI/RUT
-                </label>
+                <label htmlFor="dni" className="form-label">DNI/RUT</label>
                 <input
                   type="text"
                   className="form-control"
@@ -88,9 +95,7 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Correo Electrónico
-                </label>
+                <label htmlFor="email" className="form-label">Correo Electrónico</label>
                 <input
                   type="email"
                   className="form-control"
@@ -101,27 +106,22 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="puntos" className="form-label">
-                  Puntos
-                </label>
+                <label htmlFor="puntos" className="form-label">Puntos</label>
                 <input
                   type="number"
                   className="form-control"
                   id="points"
                   value={points}
-                  onChange={(e) => setPuntos(e.target.value)}
+                  onChange={(e) => setPuntos(Number(e.target.value))}
                   required
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary">
-                Crear Usuario
-              </button>
+              <button type="submit" className="btn btn-primary">Crear Usuario</button>
             </form>
           </div>
         </div>
       </div>
-      {/* <div className="modal-backdrop fade show"></div> */}
     </div>
   );
 }

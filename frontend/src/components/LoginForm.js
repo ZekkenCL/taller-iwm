@@ -82,7 +82,7 @@ async function authenticateUser(username, password) {
     }
 
     const data = await response.json();
-    return data.access_token; // Asegúrate de que el backend envía el token con esta clave
+    return data.access_token;
 }
 
        

@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    padding: 20px;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+
+/* Form Styles */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333; /* Asegúrate de que este color contraste con el botón */
+    color: white;
+}
+
+.navbar .btn-outline-danger {
+    color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
+}
+
+/* Other styles can be added below */
