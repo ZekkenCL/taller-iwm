@@ -17,10 +17,7 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
     return isNaN(texto) && texto.trim() !== '';
   };
 
-  const validarDni = (dni) => {
-    const regex = /^\d{8}$/; // Ajusta esta expresión regular según tu formato
-    return regex.test(dni);
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +26,6 @@ function ModalCrearUsuario({ crearUsuario, cerrarModal }) {
     if (!validarEmail(email)) erroresTemp.email = "El correo electrónico no es válido";
     if (!esTextoValido(name)) erroresTemp.name = "El nombre no es válido";
     if (!esTextoValido(lastname)) erroresTemp.lastname = "El apellido no es válido";
-    if (!validarDni(dni)) erroresTemp.dni = "El DNI/RUT no es válido";
     if (points < 0) erroresTemp.points = "Los puntos no pueden ser negativos";
 
     setErrores(erroresTemp);

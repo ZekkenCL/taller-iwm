@@ -25,7 +25,19 @@ def buscar_clientes():
 @routes.route('/cliente', methods=['POST'])
 def add_cliente():
     data = request.json
-    nuevo_cliente = Cliente(name=data['name'], lastname=data['lastname'], dni=data['dni'], email=data['email'], points=data['points'])
+    dni_existente = Cliente.query.filter_by(dni=data['dni']).first()
+    email_existente = Cliente.query.filter_by(email=data['email']).first()
+
+    if dni_existente or email_existente:
+        return jsonify({"msg": "El DNI/RUT o correo electrónico ya está registrado"}), 400
+
+    nuevo_cliente = Cliente(
+        name=data['name'], 
+        lastname=data['lastname'], 
+        dni=data['dni'], 
+        email=data['email'], 
+        points=data['points']
+    )
     db.session.add(nuevo_cliente)
     db.session.commit()
     return jsonify(nuevo_cliente.to_dict()), 201
