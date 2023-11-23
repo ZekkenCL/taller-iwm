@@ -47,10 +47,16 @@ function Dashboard() {
     };
 
     const guardarCambios = async (clienteEditado) => {
-        await actualizarCliente(clienteEditado);
-        setClienteAEditar(null);
-        cargarClientes();
-    };
+      try {
+          await actualizarCliente(clienteEditado);
+          setClienteAEditar(null);
+          cargarClientes();
+          Swal.fire('¡Éxito!', 'Cliente editado con éxito', 'success');
+      } catch (error) {
+          console.error("Error al editar el cliente:", error);
+          Swal.fire('Error', 'No se pudo editar el cliente', 'error');
+      }
+  };
 
     const agregarUsuario = async (nuevoUsuario) => {
       // Verificar si ya existe un cliente con el mismo RUT/DNI o correo electrónico
