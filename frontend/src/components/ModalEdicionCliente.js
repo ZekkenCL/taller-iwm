@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
 
+// Componente ModalEdicionCliente para editar datos de un cliente
 function ModalEdicionCliente({ cliente, guardarCambios, cerrarModal }) {
+    // Estados para cada campo del formulario y para manejar errores
     const [nombre, setNombre] = useState(cliente.name);
     const [apellido, setApellido] = useState(cliente.lastname);
     const [email, setEmail] = useState(cliente.email);
     const [puntos, setPuntos] = useState(cliente.points);
     const [error, setError] = useState('');
 
+    // Manejo del envío del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validar email
+        // Validación del email
         if (!validarEmail(email)) {
             setError('El correo electrónico no es válido');
-            return; // No continuar con el envío
+            return; // Detiene la función si el email no es válido
         }
 
+        // Verificar que los campos nombre y apellido no estén vacíos
         if (!nombre || !apellido) {
             setError('Todos los campos son obligatorios');
-            return; // No continuar con el envío
+            return; // Detiene la función si algún campo está vacío
         }
 
-        // Si todo está bien, continuar con guardar los cambios
-        setError(''); // Limpiar errores previos
+        // Limpia errores previos y guarda los cambios
+        setError('');
         guardarCambios({ ...cliente, name: nombre, lastname: apellido, email, points: puntos });
-        cerrarModal();
+        cerrarModal(); // Cierra el modal después de guardar cambios
     };
 
+    // Función para validar el formato del email
     const validarEmail = (email) => {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
         return regex.test(email);
-      };
+    };
 
+    // Renderización del formulario en un modal
     return (
         <div className="modal fade show" style={{ display: 'block' }} aria-modal="true" role="dialog">
             <div className="modal-dialog">

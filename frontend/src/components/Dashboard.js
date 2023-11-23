@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// Importaciones de componentes y servicios
 import { obtenerClientes, actualizarCliente, eliminarCliente, crearCliente } from "../services/clienteService";
 import ModalEdicionCliente from "./ModalEdicionCliente";
 import ModalCrearUsuario from "./ModalCrearUsuario";
@@ -6,16 +7,19 @@ import Swal from "sweetalert2";
 import Navbar from "./Navbar";
 
 function Dashboard() {
+    // Estados para manejar los datos de los clientes y la búsqueda
     const [clientes, setClientes] = useState([]);
     const [busqueda, setBusqueda] = useState("");
     const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
     const [clienteAEditar, setClienteAEditar] = useState(null);
     const [mostrarModalCrear, setMostrarModalCrear] = useState(false);
 
+    // useEffect para cargar los clientes al montar el componente
     useEffect(() => {
         cargarClientes();
     }, []);
 
+    // Función para obtener clientes del servidor y actualizar el estado
     const cargarClientes = async () => {
         try {
             const respuesta = await obtenerClientes();
@@ -26,6 +30,7 @@ function Dashboard() {
         }
     };
 
+    // Manejadores de eventos para la búsqueda y filtrado de clientes
     const handleSearchChange = (e) => {
         setBusqueda(e.target.value);
     };
@@ -42,10 +47,12 @@ function Dashboard() {
         setResultadosBusqueda(resultadosFiltrados);
     };
 
+    // Funciones para manejar la edición, creación y eliminación de clientes
     const iniciarEdicion = (cliente) => {
         setClienteAEditar(cliente);
     };
 
+    // Función para actualizar cliente y manejar mensajes de éxito o error
     const guardarCambios = async (clienteEditado) => {
       try {
           await actualizarCliente(clienteEditado);
@@ -58,7 +65,8 @@ function Dashboard() {
       }
   };
 
-    const agregarUsuario = async (nuevoUsuario) => {
+  // Función para agregar un nuevo usuario verificando unicidad de DNI y correo  
+  const agregarUsuario = async (nuevoUsuario) => {
       // Verificar si ya existe un cliente con el mismo RUT/DNI o correo electrónico
       const clienteExistenteDni = clientes.some(cliente => cliente.dni === nuevoUsuario.dni);
       const clienteExistenteEmail = clientes.some(cliente => cliente.email === nuevoUsuario.email);
@@ -91,7 +99,8 @@ function Dashboard() {
       }
   };
 
-    const confirmarEliminacion = async (idCliente) => {
+  // Función para confirmar y ejecutar la eliminación de un cliente  
+  const confirmarEliminacion = async (idCliente) => {
         const resultado = await Swal.fire({
             title: '¿Estás seguro?',
             text: "Esta acción no se puede deshacer",
@@ -128,6 +137,9 @@ function Dashboard() {
         }
     };
 
+    // Renderizado del componente incluyendo Navbar, formulario de búsqueda,
+    // botón para agregar usuarios, y tabla de clientes.
+    
     return (
         <div>
             <Navbar />

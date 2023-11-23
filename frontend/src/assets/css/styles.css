@@ -64,12 +64,12 @@ body {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #333; /* Asegúrate de que este color contraste con el botón */
+    background-color: #2ee29d79; /* Asegúrate de que este color contraste con el botón */
     color: white;
 }
 
 .navbar .btn-outline-danger {
-    color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
     border-color: rgb(255, 0, 0);
 }
 
