@@ -26,7 +26,7 @@ function LoginForm() {
     };
 
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100">
+        <div className="d-flex align-items-center justify-content-center vh-100 fondo-personalizado">
         <div className="card" style={{ width: '18rem' }}>
             <div className="card-body">
 
