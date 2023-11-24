@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "26d95c3d-072b-401d-9378-1f598602a17f",
+		"name": "taller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31109913"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Ochietto\",\r\n    \"password\":\"Jaqamain3pals\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/clientes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMDg2ODg0NCwianRpIjoiYjBmZmRjZmItODY3YS00MDlkLWEyMTYtMzdiMzc1MWNkMGJhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ik9jaGlldHRvIiwibmJmIjoxNzAwODY4ODQ0LCJleHAiOjE3MDA4Njk3NDR9.gwFDskUr1rF8QgRz8TfsG-09fe9gc0cW4RzOvfapg8o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/clientes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMDg2Nzg1OSwianRpIjoiOWQ2YzQzNTEtMThjOC00YjM1LWI1NGYtMGIyMTUzZjhiNzE3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ik9jaGlldHRvIiwibmJmIjoxNzAwODY3ODU5LCJleHAiOjE3MDA4Njg3NTl9.YTY3Bf28L9ZPXXkp5y9-rO0027eLc6CV9b5MhUHllQk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"María\",\r\n  \"lastname\": \"González\",\r\n  \"dni\": \"23456789\",\r\n  \"email\": \"maria.gonzalez@example.com\",\r\n  \"points\": 150\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/cliente",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/cliente/14",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/cliente/14",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cliente",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/clientes/12345678",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/clientes/buscar?busqueda=12345678",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"clientes",
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "busqueda",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/cliente/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nombre Actualizado\",\r\n    \"lastname\": \"Apellido Actualizado\",\r\n    \"dni\": \"90876473K\",\r\n    \"email\": \"nuevoemail@example.com\",\r\n    \"points\": 100\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/cliente/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cliente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/clientes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"clientes"
+					]
+				},
+				"description": "buscar clientes sin tener token de autorizacion"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Juan\",\r\n  \"lastname\": \"Pérez\",\r\n  \"dni\": \"12345648\",\r\n  \"email\": \"juan.pez@example.com\",\r\n  \"points\": 100\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/cliente",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cliente"
+					]
+				},
+				"description": "agregar cliente sin tener autorizacion"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/cliente/15",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/cliente/15",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cliente",
+						"15"
+					]
+				},
+				"description": "eliminar cliente sin tener autorizacion"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/cliente/15",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nombre Actualizado\",\r\n    \"lastname\": \"Apellido Actualizado\",\r\n    \"dni\": \"90876473K\",\r\n    \"email\": \"nuevoemail@example.com\",\r\n    \"points\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/cliente/15",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cliente",
+						"15"
+					]
+				},
+				"description": "actualizar cliente sin tener autorizacion"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMDg2Nzg1OSwianRpIjoiOWQ2YzQzNTEtMThjOC00YjM1LWI1NGYtMGIyMTUzZjhiNzE3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ik9jaGlldHRvIiwibmJmIjoxNzAwODY3ODU5LCJleHAiOjE3MDA4Njg3NTl9.YTY3Bf28L9ZPXXkp5y9-rO0027eLc6CV9b5MhUHllQk"
+		}
+	]
+}
