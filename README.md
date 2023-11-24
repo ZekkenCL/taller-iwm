@@ -1,4 +1,4 @@
-# Nombre del Proyecto
+### Taller Introduccion al desarrollo web y movil
 
 Los sistemas de gestión de usuarios son fundamentales para las empresas que comienzan a dar sus primeros pasos en el mundo digital, es por eso por lo que la empresa Dumbo Supermercados Ltda. ha convocado a los estudiantes de Introducción al Desarrollo Web/Móvil de la Universidad Católica del Norte para realizar su nuevo sistema de gestión de clientes.
 
@@ -15,43 +15,43 @@ Para ejecutar este proyecto, necesitarás instalar algunas herramientas y tecnol
 
 1. Clona el repositorio del proyecto:
 
-    git clone https://github.com/ZekkenCL/taller-iwm.git
+        git clone https://github.com/ZekkenCL/taller-iwm.git
 
 2. Navega al directorio del backend:
 
-    cd backend
+        cd backend
 
 3. Instala un entorno virtual:
 
-    pip install virtualenv
+        pip install virtualenv
 
-    virtualenv -p python3 venv
+        virtualenv -p python3 venv
 
 4. Activa el entorno virtual:
 
-    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+        Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-    .\venv\Scripts\activate
+        .\venv\Scripts\activate
 
 5. Instala las dependencias:
 
-    pip install -r requirements.txt
+        pip install -r requirements.txt
 
 6. Inicializa la base de datos:
 
-    flask db init
+        flask db init
 
-    flask db migrate
+        flask db migrate
 
-    flask db upgrade
+        flask db upgrade
 
 7. Ejecuta el seeder:
 
-    python seeder.py
+        python seeder.py
 
 8. Ejecuta el servidor de Flask:
 
-    python run.py
+        python run.py
 
 El servidor backend debería estar ahora ejecutándose en `http://localhost:5000/`.
 
@@ -65,11 +65,11 @@ El servidor backend debería estar ahora ejecutándose en `http://localhost:5000
 
 2. Instala las dependencias de Node.js:
 
-    npm install
+        npm install
 
 3. Ejecuta el servidor de desarrollo de React:
 
-    npm start
+        npm start
 
 El servidor frontend debería estar ahora ejecutándose en `http://localhost:3000/login`.
 
