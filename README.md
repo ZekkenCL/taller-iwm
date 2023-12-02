@@ -21,13 +21,15 @@ Para ejecutar este proyecto, necesitarás instalar algunas herramientas y tecnol
 
         cd backend
 
-3. Instala un entorno virtual:
+3. Instala un entorno virtual(opcional):
 
         pip install virtualenv
 
-        virtualenv -p python3 venv
+                verifique que virtualenv se encuentre dentro de las variables de entorno en el PATH, si no lo hace puede que no funcione el comando siguiente
 
-4. Activa el entorno virtual:
+                        virtualenv -p python3 venv
+
+4. Activa el entorno virtual(Solo si hizo el paso 3):
 
         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
@@ -39,11 +41,15 @@ Para ejecutar este proyecto, necesitarás instalar algunas herramientas y tecnol
 
 6. Inicializa la base de datos:
 
-        flask db init
+        en la linea 16 de __init__.py cambie los datos de conexion a la base de datos "root"(usuario de su base de datos), "beno1989"(contraseña de su base de datos), "localhost"(host de su base de datos), "3306"(puerto de su base de datos) y finalemnte "taller"(nombre de la base de datos) 
 
-        flask db migrate
+        luego ejecute los siguientes comando en la terminal
 
-        flask db upgrade
+                flask db init
+
+                flask db migrate
+
+                flask db upgrade
 
 7. Ejecuta el seeder:
 
